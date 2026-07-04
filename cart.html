@@ -1,90 +1,38 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FYKO Warenkorb</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FYKO — Cart</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-<header>
-    <h1>FYKO</h1>
+<header class="header">
+  <div class="logo">FYKO</div>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="shop.html">Shop</a>
-        <a href="cart.html">Warenkorb</a>
-    </nav>
+  <nav>
+    <a href="index.html">SHOP</a>
+    <a href="cart.html">CART</a>
+  </nav>
 </header>
 
-<section class="cart">
+<section class="cart-page">
 
-    <h2>Dein Warenkorb</h2>
+  <h1>Your Cart</h1>
 
-    <div id="cartItems"></div>
+  <div id="cart-items"></div>
 
-    <h3 id="total">Gesamt: 0 €</h3>
-
-    <button onclick="checkout()">Zur Kasse</button>
-    <button onclick="clearCart()">Warenkorb leeren</button>
+  <div class="cart-summary">
+    <h2 id="total">Total: 0€</h2>
+    <button class="checkout-btn">Checkout</button>
+    <button class="clear-btn" onclick="clearCart()">Clear Cart</button>
+  </div>
 
 </section>
 
-<script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-const cartItems = document.getElementById("cartItems");
-const total = document.getElementById("total");
-
-function renderCart() {
-
-    cartItems.innerHTML = "";
-
-    let sum = 0;
-
-    cart.forEach(item => {
-
-        cartItems.innerHTML += `
-            <p>${item.name} - ${item.price} €</p>
-        `;
-
-        sum += item.price;
-
-    });
-
-    total.innerText = "Gesamt: " + sum + " €";
-
-}
-
-function clearCart() {
-
-    localStorage.removeItem("cart");
-    cart = [];
-    renderCart();
-
-}
-
-function checkout() {
-
-    if(cart.length === 0){
-
-        alert("Dein Warenkorb ist leer.");
-        return;
-
-    }
-
-    alert("Vielen Dank für deine Bestellung!");
-
-    localStorage.removeItem("cart");
-    cart = [];
-
-    renderCart();
-
-}
-
-renderCart();
-</script>
+<script src="app.js"></script>
+<script>renderCart()</script>
 
 </body>
 </html>
