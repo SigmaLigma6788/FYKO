@@ -1,98 +1,89 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FYKO Warenkorb</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FYKO Warenkorb</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header>
+    <h1>FYKO</h1>
 
-<div class="logo">FYKO</div>
-
-<nav>
-<a href="index.html">Home</a>
-<a href="shop.html">Shop</a>
-<a href="cart.html">🛒 <span id="cart-count">0</span></a>
-</nav>
-
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="cart.html">Warenkorb</a>
+    </nav>
 </header>
 
-<section class="featured">
+<section class="cart">
 
-<h2>DEIN WARENKORB</h2>
+    <h2>Dein Warenkorb</h2>
 
-<div id="cart-items"></div>
+    <div id="cartItems"></div>
 
-<h2 id="total">Gesamt: 0 CHF</h2>
+    <h3 id="total">Gesamt: 0 €</h3>
 
-<button onclick="checkout()">ZUR KASSE</button>
+    <button onclick="checkout()">Zur Kasse</button>
+    <button onclick="clearCart()">Warenkorb leeren</button>
 
 </section>
-
-<footer>
-<p>© 2026 FYKO • BUILT DIFFERENT.</p>
-</footer>
 
 <script>
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const cartItems = document.getElementById("cart-items");
+const cartItems = document.getElementById("cartItems");
 const total = document.getElementById("total");
-const cartCount = document.getElementById("cart-count");
 
-function renderCart(){
+function renderCart() {
 
-cartItems.innerHTML="";
+    cartItems.innerHTML = "";
 
-let sum=0;
+    let sum = 0;
 
-cartCount.innerText=cart.length;
+    cart.forEach(item => {
 
-cart.forEach((item,index)=>{
+        cartItems.innerHTML += `
+            <p>${item.name} - ${item.price} €</p>
+        `;
 
-sum+=item.price;
+        sum += item.price;
 
-cartItems.innerHTML+=`
-<div class="card">
-<h3>${item.name}</h3>
-<p>${item.price} CHF</p>
-<button onclick="removeItem(${index})">Entfernen</button>
-</div>
-`;
+    });
 
-});
-
-total.innerText="Gesamt: "+sum+" CHF";
+    total.innerText = "Gesamt: " + sum + " €";
 
 }
 
-function removeItem(index){
+function clearCart() {
 
-cart.splice(index,1);
-
-localStorage.setItem("cart",JSON.stringify(cart));
-
-renderCart();
+    localStorage.removeItem("cart");
+    cart = [];
+    renderCart();
 
 }
 
-function checkout(){
+function checkout() {
 
-if(cart.length===0){
-alert("Dein Warenkorb ist leer.");
-return;
-}
+    if(cart.length === 0){
 
-alert("Checkout kommt bald!");
+        alert("Dein Warenkorb ist leer.");
+        return;
+
+    }
+
+    alert("Vielen Dank für deine Bestellung!");
+
+    localStorage.removeItem("cart");
+    cart = [];
+
+    renderCart();
 
 }
 
 renderCart();
-
 </script>
 
 </body>
