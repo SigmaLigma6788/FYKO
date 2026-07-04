@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FYKO</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">FYKO</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="shop.html">Shop</a>
+<a href="#">About</a>
+<a href="#">Contact</a>
+<a href="cart.html">🛒 <span id="cart-count">0</span></a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>FYKO</h1>
+
+<p>BUILT DIFFERENT.</p>
+
+<a href="shop.html">
+<button>SHOP NOW</button>
+</a>
+
+</section>
+
+<section class="featured">
+
+<h2>NEW DROP</h2>
+
+<div class="products">
+
+<div class="card">
+<img src="images/shirt1.jpg" alt="">
+<h3>CLASSIC TEE</h3>
+<p>30 CHF</p>
+<button onclick="addToCart('CLASSIC TEE',30)">ADD TO CART</button>
+</div>
+
+<div class="card">
+<img src="images/shirt2.jpg" alt="">
+<h3>OVERSIZED TEE</h3>
+<p>30 CHF</p>
+<button onclick="addToCart('OVERSIZED TEE',30)">ADD TO CART</button>
+</div>
+
+<div class="card">
+<img src="images/hoodie.jpg" alt="">
+<h3>FYKO HOODIE</h3>
+<p>60 CHF</p>
+<button onclick="addToCart('FYKO HOODIE',60)">ADD TO CART</button>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>© 2026 FYKO • PREMIUM STREETWEAR</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
